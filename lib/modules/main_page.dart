@@ -32,7 +32,7 @@ class MainPage extends StatelessWidget{
                     ),
                     ClipRRect(
                       borderRadius: BorderRadius.circular(30),
-                      child: Image.asset("images/food1.jpg",height: 50,width: 50,fit: BoxFit.cover,),
+                      child: Image.asset("images/image.jpg",height: 50,width: 50,fit: BoxFit.cover,),
                     ),
                   ],
                 ),
