@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fooddeliveryapp/models/food.dart';
 
+import 'home_page.dart';
+
 class MainPage extends StatelessWidget{
   List<Food> food = [
     Food(foodName: "Appetizers", image: "images/food1.jpg"),
@@ -72,32 +74,39 @@ class MainPage extends StatelessWidget{
                   physics: NeverScrollableScrollPhysics(),
                   scrollDirection: Axis.vertical,
                   itemBuilder: (context, index){
-                    return Container(
-                      margin: EdgeInsets.only(bottom: 16),
-                      decoration: BoxDecoration(
-                        color: Color(0xfff4f5f9),
-                        borderRadius: BorderRadius.circular(8)
-                      ),
-                      padding: EdgeInsets.all(16),
-                      child: Row(
-                        children: <Widget>[
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(8),
-                            child: Image.asset(food[index].image,height: 44,width: 44,fit: BoxFit.cover,),
-                          ),
-                          SizedBox(width: 30,),
-                          Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget>[
-                                Text(food[index].foodName,style: TextStyle(fontSize: 16,fontWeight: FontWeight.w500),),
-                                SizedBox(height: 10,),
-                                Text("24 Menus found",style: TextStyle(fontSize: 12,color: Colors.grey.shade500),),
-                              ],
+                    return GestureDetector(
+                      onTap: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (context){
+                          return HomePage(text: food[index].foodName,);
+                        }));
+                      },
+                      child: Container(
+                        margin: EdgeInsets.only(bottom: 16),
+                        decoration: BoxDecoration(
+                            color: Color(0xfff4f5f9),
+                            borderRadius: BorderRadius.circular(8)
+                        ),
+                        padding: EdgeInsets.all(16),
+                        child: Row(
+                          children: <Widget>[
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(8),
+                              child: Image.asset(food[index].image,height: 44,width: 44,fit: BoxFit.cover,),
                             ),
-                          ),
-                          Icon(Icons.arrow_forward_ios,color: Colors.grey.shade500,size: 16,),
-                        ],
+                            SizedBox(width: 30,),
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  Text(food[index].foodName,style: TextStyle(fontSize: 16,fontWeight: FontWeight.w500),),
+                                  SizedBox(height: 10,),
+                                  Text("24 Menus found",style: TextStyle(fontSize: 12,color: Colors.grey.shade500),),
+                                ],
+                              ),
+                            ),
+                            Icon(Icons.arrow_forward_ios,color: Colors.grey.shade500,size: 16,),
+                          ],
+                        ),
                       ),
                     );
                   },
